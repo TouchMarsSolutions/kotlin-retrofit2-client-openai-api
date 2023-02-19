@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object Serializer {
+
     @JvmStatic
     val moshiBuilder: Moshi.Builder = Moshi.Builder()
         .add(OffsetDateTimeAdapter())

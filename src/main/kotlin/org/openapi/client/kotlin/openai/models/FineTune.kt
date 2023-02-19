@@ -15,9 +15,6 @@
 
 package org.openapi.client.kotlin.openai.models
 
-import org.openapi.client.kotlin.openai.models.FineTuneEvent
-import org.openapi.client.kotlin.openai.models.OpenAIFile
-
 import com.squareup.moshi.Json
 
 /**
