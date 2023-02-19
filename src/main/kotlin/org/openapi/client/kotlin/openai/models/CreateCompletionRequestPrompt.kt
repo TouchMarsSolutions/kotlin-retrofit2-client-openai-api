@@ -21,7 +21,7 @@ package org.openapi.client.kotlin.openai.models
  *
  */
 
-
+@Deprecated("This class is deprecated, please use Array<String> instead.")
 data class CreateCompletionRequestPrompt (private val value: Any): ValueOnly {
     init {
         require(value is String || value is Array<*>) {

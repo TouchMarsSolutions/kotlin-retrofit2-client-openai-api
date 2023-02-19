@@ -21,7 +21,7 @@ package org.openapi.client.kotlin.openai.models
  *
  */
 
-
+@Deprecated("This class is deprecated, please use Array<String> instead.")
 data class CreateModerationRequestInput (private val value: Any) {
     init {
         require(value is String || value is Array<*>) {

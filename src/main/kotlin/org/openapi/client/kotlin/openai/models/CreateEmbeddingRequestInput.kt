@@ -21,6 +21,7 @@ package org.openapi.client.kotlin.openai.models
  *
  */
 
+@Deprecated("This class is deprecated, please use Array<String> instead.")
 data class CreateEmbeddingRequestInput (private val value: Any) {
     init {
         require(value is String || value is Array<*>) {
