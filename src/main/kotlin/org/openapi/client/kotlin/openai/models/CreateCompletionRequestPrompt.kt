@@ -24,14 +24,14 @@ import com.squareup.moshi.Json
  */
 
 
-data class CreateCompletionRequestPrompt (private val value: Any) {
+data class CreateCompletionRequestPrompt (private val value: Any): ValueOnly {
     init {
         require(value is String || value is Array<*>) {
             "value must be initialized with a String or an Array of Strings"
         }
     }
 
-    fun getValue(): Any {
+    override fun getValue(): Any {
         return value
     }
 }
