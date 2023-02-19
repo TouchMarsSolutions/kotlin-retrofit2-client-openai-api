@@ -16,8 +16,6 @@
 package org.openapi.client.kotlin.openai.models
 
 
-import com.squareup.moshi.Json
-
 /**
  * The input text to classify
  *

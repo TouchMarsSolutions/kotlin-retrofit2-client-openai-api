@@ -1,41 +1,11 @@
 package org.openapi.client.kotlin.openai.apis
 
-import org.openapi.client.kotlin.openai.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
 import com.squareup.moshi.Json
-
-import org.openapi.client.kotlin.openai.models.CreateAnswerRequest
-import org.openapi.client.kotlin.openai.models.CreateAnswerResponse
-import org.openapi.client.kotlin.openai.models.CreateClassificationRequest
-import org.openapi.client.kotlin.openai.models.CreateClassificationResponse
-import org.openapi.client.kotlin.openai.models.CreateCompletionRequest
-import org.openapi.client.kotlin.openai.models.CreateCompletionResponse
-import org.openapi.client.kotlin.openai.models.CreateEditRequest
-import org.openapi.client.kotlin.openai.models.CreateEditResponse
-import org.openapi.client.kotlin.openai.models.CreateEmbeddingRequest
-import org.openapi.client.kotlin.openai.models.CreateEmbeddingResponse
-import org.openapi.client.kotlin.openai.models.CreateFineTuneRequest
-import org.openapi.client.kotlin.openai.models.CreateImageRequest
-import org.openapi.client.kotlin.openai.models.CreateModerationRequest
-import org.openapi.client.kotlin.openai.models.CreateModerationResponse
-import org.openapi.client.kotlin.openai.models.CreateSearchRequest
-import org.openapi.client.kotlin.openai.models.CreateSearchResponse
-import org.openapi.client.kotlin.openai.models.DeleteFileResponse
-import org.openapi.client.kotlin.openai.models.DeleteModelResponse
-import org.openapi.client.kotlin.openai.models.Engine
-import org.openapi.client.kotlin.openai.models.FineTune
-import org.openapi.client.kotlin.openai.models.ImagesResponse
-import org.openapi.client.kotlin.openai.models.ListEnginesResponse
-import org.openapi.client.kotlin.openai.models.ListFilesResponse
-import org.openapi.client.kotlin.openai.models.ListFineTuneEventsResponse
-import org.openapi.client.kotlin.openai.models.ListFineTunesResponse
-import org.openapi.client.kotlin.openai.models.ListModelsResponse
-import org.openapi.client.kotlin.openai.models.Model
-import org.openapi.client.kotlin.openai.models.OpenAIFile
-
 import okhttp3.MultipartBody
+import org.openapi.client.kotlin.openai.infrastructure.CollectionFormats.*
+import org.openapi.client.kotlin.openai.models.*
+import retrofit2.Response
+import retrofit2.http.*
 
 interface OpenAIApi {
     /**

@@ -15,8 +15,6 @@
 
 package org.openapi.client.kotlin.openai.models
 
-import org.openapi.client.kotlin.openai.models.CreateEmbeddingRequestInput
-
 import com.squareup.moshi.Json
 
 /**
@@ -35,7 +33,7 @@ data class CreateEmbeddingRequest (
     val model: kotlin.String,
 
     @Json(name = "input")
-    val input: CreateEmbeddingRequestInput,
+    val input: Array<String>,
 
     /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     @Json(name = "user")

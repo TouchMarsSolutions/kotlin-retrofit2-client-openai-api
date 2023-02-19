@@ -15,8 +15,6 @@
 
 package org.openapi.client.kotlin.openai.models
 
-import org.openapi.client.kotlin.openai.models.ImagesResponseDataInner
-
 import com.squareup.moshi.Json
 
 /**

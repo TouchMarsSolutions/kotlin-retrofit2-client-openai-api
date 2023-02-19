@@ -1,15 +1,15 @@
 package org.openapi.client.kotlin.openai.infrastructure
 
 
+import com.squareup.moshi.Moshi
 import okhttp3.Call
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import com.squareup.moshi.Moshi
+import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 class ApiClient(

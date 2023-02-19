@@ -15,9 +15,6 @@
 
 package org.openapi.client.kotlin.openai.models
 
-import org.openapi.client.kotlin.openai.models.CreateModerationResponseResultsInnerCategories
-import org.openapi.client.kotlin.openai.models.CreateModerationResponseResultsInnerCategoryScores
-
 import com.squareup.moshi.Json
 
 /**

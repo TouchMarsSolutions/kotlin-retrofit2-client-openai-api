@@ -15,9 +15,6 @@
 
 package org.openapi.client.kotlin.openai.models
 
-import org.openapi.client.kotlin.openai.models.CreateCompletionResponseChoicesInner
-import org.openapi.client.kotlin.openai.models.CreateCompletionResponseUsage
-
 import com.squareup.moshi.Json
 
 /**
