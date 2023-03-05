@@ -1,5 +1,5 @@
 group 'org.openapi.client.kotlin.openai'
-version '2.1.0'
+version '2.1.3'
 
 buildscript {
     ext.kotlin_version = '1.8.10'
