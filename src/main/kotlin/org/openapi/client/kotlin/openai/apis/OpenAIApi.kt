@@ -34,6 +34,18 @@ interface OpenAIApi {
     suspend fun createAnswer(@Body createAnswerRequest: CreateAnswerRequest): Response<CreateAnswerResponse>
 
     /**
+     * Creates a completion for the chat message
+     *
+     * Responses:
+     *  - 200: OK
+     *
+     * @param createChatCompletionRequest
+     * @return [CreateChatCompletionResponse]
+     */
+    @POST("chat/completions")
+    suspend fun createChatCompletion(@Body createChatCompletionRequest: CreateChatCompletionRequest): Response<CreateChatCompletionResponse>
+
+    /**
      * Classifies the specified &#x60;query&#x60; using provided examples.  The endpoint first [searches](/docs/api-reference/searches) over the labeled examples to select the ones most relevant for the particular query. Then, the relevant examples are combined with the query to construct a prompt to produce the final label via the [completions](/docs/api-reference/completions) endpoint.  Labeled examples can be provided via an uploaded &#x60;file&#x60;, or explicitly listed in the request using the &#x60;examples&#x60; parameter for quick tests and small scale use cases. 
      * 
      * Responses:
@@ -219,6 +231,41 @@ interface OpenAIApi {
     @Deprecated("This api was deprecated")
     @POST("engines/{engine_id}/search")
     suspend fun createSearch(@Path("engine_id") engineId: kotlin.String, @Body createSearchRequest: CreateSearchRequest): Response<CreateSearchResponse>
+
+    /**
+     * Transcribes audio into the input language.
+     *
+     * Responses:
+     *  - 200: OK
+     *
+     * @param file The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+     * @param model ID of the model to use. Only &#x60;whisper-1&#x60; is currently available.
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
+     * @param responseFormat The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  (optional, default to "json")
+     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
+     * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
+     * @return [CreateTranscriptionResponse]
+     */
+    @Multipart
+    @POST("audio/transcriptions")
+    suspend fun createTranscription(@Part file: MultipartBody.Part, @Part("model") model: kotlin.String, @Part("prompt") prompt: kotlin.String? = null, @Part("response_format") responseFormat: kotlin.String? = "json", @Part("temperature") temperature: java.math.BigDecimal? = java.math.BigDecimal("0"), @Part("language") language: kotlin.String? = null): Response<CreateTranscriptionResponse>
+
+    /**
+     * Translates audio into into English.
+     *
+     * Responses:
+     *  - 200: OK
+     *
+     * @param file The audio file to translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+     * @param model ID of the model to use. Only &#x60;whisper-1&#x60; is currently available.
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
+     * @param responseFormat The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.  (optional, default to "json")
+     * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
+     * @return [CreateTranslationResponse]
+     */
+    @Multipart
+    @POST("audio/translations")
+    suspend fun createTranslation(@Part file: MultipartBody.Part, @Part("model") model: kotlin.String, @Part("prompt") prompt: kotlin.String? = null, @Part("response_format") responseFormat: kotlin.String? = "json", @Part("temperature") temperature: java.math.BigDecimal? = java.math.BigDecimal("0")): Response<CreateTranslationResponse>
 
     /**
      * Delete a file.

@@ -25,7 +25,7 @@ import java.math.BigDecimal
  * @param prompt 
  * @param suffix The suffix that comes after a completion of inserted text.
  * @param maxTokens The maximum number of [tokens](/tokenizer) to generate in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model's context length. Most models have a context length of 2048 tokens (except for the newest models, which support 4096). 
- * @param temperature What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.  We generally recommend altering this or `top_p` but not both. 
+ * @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.
  * @param topP An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. 
  * @param n How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
  * @param stream Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. 
@@ -57,13 +57,13 @@ data class CreateCompletionRequest (
     @Json(name = "max_tokens")
     val maxTokens: kotlin.Int? = 16,
 
-    /* What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.  We generally recommend altering this or `top_p` but not both.  */
+    /* What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.  */
     @Json(name = "temperature")
-    val temperature: java.math.BigDecimal? = BigDecimal.ZERO,
+    val temperature: BigDecimal? = BigDecimal.ZERO,
 
     /* An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.  */
     @Json(name = "top_p")
-    val topP: java.math.BigDecimal? = java.math.BigDecimal("1"),
+    val topP: BigDecimal? = BigDecimal.ONE,
 
     /* How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.  */
     @Json(name = "n")
@@ -86,11 +86,11 @@ data class CreateCompletionRequest (
 
     /* Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)  */
     @Json(name = "presence_penalty")
-    val presencePenalty: java.math.BigDecimal? = java.math.BigDecimal("0"),
+    val presencePenalty: BigDecimal? = BigDecimal.ZERO,
 
     /* Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/api-reference/parameter-details)  */
     @Json(name = "frequency_penalty")
-    val frequencyPenalty: java.math.BigDecimal? = java.math.BigDecimal("0"),
+    val frequencyPenalty: BigDecimal? = BigDecimal.ZERO,
 
     /* Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.  */
     @Json(name = "best_of")

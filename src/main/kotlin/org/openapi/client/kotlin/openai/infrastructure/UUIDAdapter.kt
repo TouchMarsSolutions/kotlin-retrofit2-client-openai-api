@@ -2,7 +2,7 @@ package org.openapi.client.kotlin.openai.infrastructure
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
-import java.util.*
+import java.util.UUID
 
 class UUIDAdapter {
     @ToJson

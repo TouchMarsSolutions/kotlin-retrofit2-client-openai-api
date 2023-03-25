@@ -17,22 +17,23 @@ package org.openapi.client.kotlin.openai.models
 
 
 import com.squareup.moshi.Json
+import java.math.BigDecimal
 
 /**
  * 
  *
- * @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
+ * @param model ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001` model with this endpoint.
  * @param instruction The instruction that tells the model how to edit the prompt.
  * @param input The input text to use as a starting point for the edit.
  * @param n How many edits to generate for the input and instruction.
- * @param temperature What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.  We generally recommend altering this or `top_p` but not both. 
+ * @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.
  * @param topP An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. 
  */
 
 
 data class CreateEditRequest (
 
-    /* ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. */
+    /* ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001` model with this endpoint. */
     @Json(name = "model")
     val model: kotlin.String,
 
@@ -48,13 +49,13 @@ data class CreateEditRequest (
     @Json(name = "n")
     val n: kotlin.Int? = 1,
 
-    /* What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.  We generally recommend altering this or `top_p` but not both.  */
+    /* What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.  */
     @Json(name = "temperature")
-    val temperature: java.math.BigDecimal? = java.math.BigDecimal("1"),
+    val temperature: BigDecimal? = BigDecimal.ONE,
 
     /* An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.  */
     @Json(name = "top_p")
-    val topP: java.math.BigDecimal? = java.math.BigDecimal("1")
+    val topP: BigDecimal? = BigDecimal.ONE
 
 )
 

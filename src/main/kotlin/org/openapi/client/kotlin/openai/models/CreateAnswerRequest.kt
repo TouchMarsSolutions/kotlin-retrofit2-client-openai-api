@@ -16,6 +16,7 @@
 package org.openapi.client.kotlin.openai.models
 
 import com.squareup.moshi.Json
+import java.math.BigDecimal
 
 /**
  * 
@@ -28,7 +29,7 @@ import com.squareup.moshi.Json
  * @param file The ID of an uploaded file that contains documents to search over. See [upload file](/docs/api-reference/files/upload) for how to upload a file of the desired format and purpose.  You should specify either `documents` or a `file`, but not both. 
  * @param searchModel ID of the model to use for [Search](/docs/api-reference/searches/create). You can select one of `ada`, `babbage`, `curie`, or `davinci`.
  * @param maxRerank The maximum number of documents to be ranked by [Search](/docs/api-reference/searches/create) when using `file`. Setting it to a higher value leads to improved accuracy but with increased latency and cost.
- * @param temperature What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values mean the model will take more risks and value 0 (argmax sampling) works better for scenarios with a well-defined answer.
+ * @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
  * @param logprobs Include the log probabilities on the `logprobs` most likely tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. If you need more than this, please contact us through our [Help center](https://help.openai.com) and describe your use case.  When `logprobs` is set, `completion` will be automatically added into `expand` to get the logprobs. 
  * @param maxTokens The maximum number of tokens allowed for the generated answer
  * @param stop 
@@ -53,7 +54,7 @@ data class CreateAnswerRequest (
 
     /* List of (question, answer) pairs that will help steer the model towards the tone and answer format you'd like. We recommend adding 2 to 3 examples. */
     @Json(name = "examples")
-    val examples: kotlin.collections.List<kotlin.collections.List<kotlin.String>>,
+    val examples: List<List<kotlin.String>>,
 
     /* A text snippet containing the contextual information used to generate the answers for the `examples` you provide. */
     @Json(name = "examples_context")
@@ -75,9 +76,9 @@ data class CreateAnswerRequest (
     @Json(name = "max_rerank")
     val maxRerank: kotlin.Int? = 200,
 
-    /* What [sampling temperature](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277) to use. Higher values mean the model will take more risks and value 0 (argmax sampling) works better for scenarios with a well-defined answer. */
+    /* What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. */
     @Json(name = "temperature")
-    val temperature: java.math.BigDecimal? = java.math.BigDecimal("0"),
+    val temperature: BigDecimal? = BigDecimal.ZERO,
 
     /* Include the log probabilities on the `logprobs` most likely tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. If you need more than this, please contact us through our [Help center](https://help.openai.com) and describe your use case.  When `logprobs` is set, `completion` will be automatically added into `expand` to get the logprobs.  */
     @Json(name = "logprobs")
@@ -108,7 +109,7 @@ data class CreateAnswerRequest (
 
     /* If an object name is in the list, we provide the full information of the object; otherwise, we only provide the object ID. Currently we support `completion` and `file` objects for expansion. */
     @Json(name = "expand")
-    val expand: kotlin.collections.List<kotlin.Any>? = arrayListOf(),
+    val expand: List<kotlin.Any>? = arrayListOf(),
 
     /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
     @Json(name = "user")
